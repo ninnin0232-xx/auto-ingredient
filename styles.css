@@ -1,0 +1,520 @@
+:root {
+  /* Warm, restaurant-like color palette */
+  --bg-color: #f7f3eb;
+  /* Ivory paper */
+  --text-main: #3e332a;
+  /* Dark brown/charcoal */
+  --text-muted: #8b7d6b;
+  --accent-1: #d94a38;
+  /* Warm red/terracotta */
+  --accent-2: #4a5d23;
+  /* Olive green */
+  --accent-muted: rgba(217, 74, 56, 0.1);
+  --paper-bg: #ffffff;
+  --border-color: #e5dac7;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-soft: 0 10px 30px rgba(62, 51, 42, 0.05);
+  --shadow-medium: 0 4px 15px rgba(62, 51, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e5dac7' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Typography elements */
+h1,
+h2,
+h3,
+.recipe-name,
+.ornament {
+  font-family: 'Shippori Mincho', serif;
+}
+
+header {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 50px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+
+.ornament {
+  font-size: 1.1rem;
+  color: var(--accent-1);
+  letter-spacing: 0.1em;
+}
+
+header p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 80px;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* Sections */
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--text-main);
+  margin-bottom: 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-title span {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.8rem;
+  color: var(--accent-1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent-1);
+  margin-top: 10px;
+}
+
+/* Menu Section */
+.menu-section {
+  background: var(--paper-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 35px 30px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+
+/* Menu visual corner accents */
+.menu-section::before,
+.menu-section::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--border-color);
+}
+
+.menu-section::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.menu-section::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+}
+
+
+.recipe-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recipe-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--border-color);
+  padding: 15px 10px;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.recipe-btn:hover {
+  background: rgba(229, 218, 199, 0.2);
+  transform: translateX(5px);
+}
+
+.recipe-btn.active {
+  background: var(--accent-muted);
+  border-bottom-color: var(--accent-1);
+}
+
+.recipe-btn.active::before {
+  content: '✓';
+  position: absolute;
+  left: -15px;
+  color: var(--accent-1);
+  font-family: sans-serif;
+}
+
+.recipe-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* Output Section (Receipt Style) */
+.output-section {
+  position: sticky;
+  top: 40px;
+  height: fit-content;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  /* hide scrollbar for clean look */
+  scrollbar-width: none;
+}
+
+.output-section::-webkit-scrollbar {
+  display: none;
+}
+
+.receipt-paper {
+  background: #fff;
+  padding: 40px 30px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-medium);
+  position: relative;
+  /* Jagged edge effect for receipt bottom */
+  background-image: radial-gradient(#fff 50%, transparent 50%);
+  background-size: 20px 20px;
+  background-position: -10px calc(100% + 10px);
+  background-repeat: repeat-x;
+  padding-bottom: 50px;
+}
+
+.output-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.output-header h2 {
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+}
+
+.output-header h2 span {
+  display: block;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.selected-count {
+  margin-top: 10px;
+  color: var(--accent-1);
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Shippori Mincho', serif;
+}
+
+.selected-count::after {
+  content: '品のご注文';
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--text-main);
+  margin-left: 5px;
+}
+
+/* Cart Functionality */
+.cart-list {
+  margin-bottom: 25px;
+}
+
+.cart-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--border-color);
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.cart-item-name {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* Servings Control - Restaurant Style */
+.servings-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.servings-control button {
+  background: #f0ebe1;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.servings-control button:hover {
+  background: var(--accent-1);
+  color: white;
+  border-color: var(--accent-1);
+}
+
+.servings-control button:active {
+  transform: translateY(1px);
+}
+
+.servings-display {
+  min-width: 45px;
+  text-align: center;
+}
+
+.servings-display .count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.servings-display .unit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+.cart-item-remove {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0 5px;
+  margin-left: 10px;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.cart-item-remove:hover {
+  color: var(--accent-1);
+}
+
+.divider {
+  border-top: 2px dashed var(--border-color);
+  margin: 30px 0;
+}
+
+.total-ingredients-header h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.total-ingredients-header h3 span {
+  display: block;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.75rem;
+  color: var(--accent-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 10px 0;
+  font-style: italic;
+  border: none !important;
+}
+
+/* Ingredients List */
+.ingredients-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f0e9;
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.ingredient-item:last-child {
+  border-bottom: none;
+}
+
+.ingredient-name {
+  font-weight: 500;
+}
+
+.ingredient-amount {
+  color: var(--text-main);
+  font-weight: 700;
+  font-family: monospace;
+  font-size: 1.05rem;
+}
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 35px;
+  font-style: italic;
+  color: var(--text-muted);
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 0 15px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .menu-section {
+    padding: 25px 20px;
+  }
+
+  .receipt-paper {
+    padding: 30px 20px 40px;
+    background-size: 16px 16px;
+  }
+
+  .recipe-btn {
+    padding: 18px 15px;
+    font-size: 1.1rem;
+  }
+
+  .servings-control button {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+
+  .servings-display {
+    min-width: 50px;
+  }
+
+  .servings-display .count {
+    font-size: 1.15rem;
+  }
+
+  .cart-item-remove {
+    font-size: 1.8rem;
+    padding: 5px 10px;
+  }
+
+  .ingredient-amount {
+    font-size: 1.1rem;
+  }
+}
