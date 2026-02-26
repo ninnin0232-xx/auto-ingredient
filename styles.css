@@ -165,6 +165,26 @@ header p {
 .recipe-grid {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.recipe-category-header {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.25rem;
+  color: var(--accent-2);
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  border-left: 3px solid var(--accent-2);
+}
+
+.recipe-category-header:first-child {
+  margin-top: 0;
+}
+
+.recipe-category-grid {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
@@ -402,12 +422,28 @@ header p {
   flex-direction: column;
 }
 
+.ingredient-category-header {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-top: 15px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--accent-muted);
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.ingredient-category-header:first-child {
+  margin-top: 0;
+}
+
 .ingredient-item {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   padding: 8px 0;
-  border-bottom: 1px solid #f5f0e9;
+  border-bottom: 1px dotted var(--border-color);
   animation: slideIn 0.3s ease-out forwards;
+  gap: 10px;
 }
 
 .ingredient-item:last-child {
@@ -416,6 +452,8 @@ header p {
 
 .ingredient-name {
   font-weight: 500;
+  flex-shrink: 1;
+  word-break: break-all;
 }
 
 .ingredient-amount {
@@ -423,6 +461,8 @@ header p {
   font-weight: 700;
   font-family: monospace;
   font-size: 1.05rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .receipt-footer {
