@@ -232,7 +232,14 @@ function changeCartServings(recipeId, delta) {
 
 function removeCartItem(recipeId) {
     cart = cart.filter(item => item.id !== recipeId);
-    renderRecipes(); // update active states on grid
+
+    // グリッドのボタンのアクティブ状態を更新（全体を再描画しない）
+    document.querySelectorAll('.recipe-btn').forEach(btn => {
+        if (btn.dataset.id === recipeId) {
+            btn.classList.remove('active');
+        }
+    });
+
     updateOutput();
 }
 

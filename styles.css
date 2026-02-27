@@ -311,7 +311,6 @@ header p {
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px dotted var(--border-color);
-  animation: slideIn 0.3s ease-out forwards;
 }
 
 .cart-item-name {
@@ -429,7 +428,6 @@ header p {
   margin-top: 15px;
   padding-bottom: 4px;
   border-bottom: 2px solid var(--accent-muted);
-  animation: slideIn 0.3s ease-out forwards;
 }
 
 .ingredient-category-header:first-child {
@@ -442,7 +440,6 @@ header p {
   align-items: baseline;
   padding: 8px 0;
   border-bottom: 1px dotted var(--border-color);
-  animation: slideIn 0.3s ease-out forwards;
   gap: 10px;
 }
 
